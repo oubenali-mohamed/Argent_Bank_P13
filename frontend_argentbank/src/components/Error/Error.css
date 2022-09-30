@@ -1,0 +1,23 @@
+.error_container {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  position: absolute;
+  top: 10%;
+  left: 30%;
+}
+span {
+  font-size: 300px;
+  color: #114c2d;
+}
+p {
+  margin-top: 0px;
+  font-size: 26px;
+}
+.lienToHome {
+  color: #2db06a;
+  margin-left: 120px;
+  font-size: 20px;
+  text-decoration: none;
+}
+.lienToHome:hover {
+  text-decoration: underline;
+}

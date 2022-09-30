@@ -1,18 +1,19 @@
 import React from 'react'
 import './Header.css'
 import logo from '../../assets/argentBankLogo.png'
+import { NavLink } from 'react-router-dom'
 
 function Header() {
   return (
-    <nav class="nav">
-      <a href="/">
+    <nav className="nav">
+      <NavLink to="/">
         <img className="logo" src={logo} alt="Argent Bank Logo" />
-      </a>
+      </NavLink>
       <div>
-        <a className="singIn" href="./sign-in.html">
-          <i class="fas fa-user-circle"></i>
+        <NavLink className="singIn" to="./login">
+          <i className="fas fa-user-circle"></i>
           Sign In
-        </a>
+        </NavLink>
       </div>
     </nav>
   )
