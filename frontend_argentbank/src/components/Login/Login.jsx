@@ -26,7 +26,7 @@ function Login() {
               <label htmlFor="remember_me">Remember me</label>
             </div>
 
-            <NavLink to="/user" className="sign_in_button">
+            <NavLink to="/signIn" className="sign_in_button">
               Sign In
             </NavLink>
           </form>

@@ -1,22 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Home from './pages/Home'
-import Error from './components/Error/Error'
-import Login from './components/Login/Login'
-import User from './components/User/User'
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import App from './App'
+import store from './store/store'
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/user" element={<User />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 )
