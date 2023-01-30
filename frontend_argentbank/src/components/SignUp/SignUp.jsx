@@ -1,43 +1,60 @@
 import React, { useState } from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
-import './Login.css'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { userLogin } from '../../features/userSlice'
+import './SignUp.css'
 import { useDispatch } from 'react-redux'
-
-function Login() {
+import { userSignup } from '../../features/userSlice'
+import { useNavigate } from 'react-router-dom'
+function SignUp() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault()
-    console.log(email, password)
+    console.log(firstName, lastName, email, password)
     dispatch(
-      userLogin({
+      userSignup({
+        firstName,
+        lastName,
         email,
         password,
       })
     )
     navigate('/profile')
   }
-
   return (
     <div>
       <Header />
       <section className="section_form">
         <div className="container_form">
           <i className="fas fa-user-circle icon_form"></i>
-          <h1>Sign In</h1>
+          <h1>Sign Up</h1>
           <form>
+            <div className="input_content">
+              <label htmlFor="firstanem">FirstName</label>
+              <input
+                type="text"
+                id="firstname"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+            <div className="input_content">
+              <label htmlFor="lastname">LastName</label>
+              <input
+                type="text"
+                id="lastname"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
             <div className="input_content">
               <label htmlFor="email">Email</label>
               <input
                 type="text"
                 id="email"
-                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -46,25 +63,13 @@ function Login() {
               <input
                 type="password"
                 id="password"
-                value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="input_remember">
-              <input type="checkbox" id="remember_me" />
-              <label htmlFor="remember_me">Remember me</label>
-            </div>
-            <button onClick={handleLogin} className="sign_in_button">
-              Sign In
+            <button onClick={handleSignup} className="sign_up_button">
+              Sign Up
             </button>
           </form>
-          <div className="signup">
-            Don't have an account?
-            <br />
-            <NavLink to="/signup" className="link_signup">
-              Sign Up
-            </NavLink>
-          </div>
         </div>
       </section>
 
@@ -73,4 +78,4 @@ function Login() {
   )
 }
 
-export default Login
+export default SignUp

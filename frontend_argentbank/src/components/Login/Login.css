@@ -5,7 +5,7 @@
   height: 500px;
   color: #2c3e50;
   padding-top: 2px;
-  padding-bottom: 40px;
+  padding-bottom: 80px;
 }
 .container_form {
   box-sizing: border-box;
@@ -45,10 +45,11 @@ h1 {
 }
 .sign_in_button {
   display: block;
-  width: 100%;
+  width: 50%;
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
+  margin-left: 3rem;
   margin-top: 1rem;
   border-color: #00bc77;
   background-color: #00bc77;
@@ -57,4 +58,14 @@ h1 {
 }
 form {
   margin-top: 40px;
+}
+.signup {
+  margin-top: 40px;
+  text-align: center;
+}
+.link_signup {
+  color: #000;
+}
+.link_signup:hover {
+  color: #00bc77;
 }

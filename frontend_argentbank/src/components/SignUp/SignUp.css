@@ -1,0 +1,13 @@
+.sign_up_button {
+    display: block;
+    width: 50%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-left: 3rem;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+    text-align: center;
+  }
