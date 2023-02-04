@@ -3,9 +3,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 let initialState = {
   email: '',
   password: '',
-  token: '',
-  firstName: '',
-  lastName: '',
+  token: localStorage.getItem('token'),
+  firstName: localStorage.getItem('firstName'),
+  lastName:  localStorage.getItem('lastName'),
   loading: false,
 }
 
@@ -17,7 +17,8 @@ export const userSignup = createAsyncThunk('usersignup', async (body) => {
     },
     body: JSON.stringify(body),
   })
-  return await response.json()
+  const data = await response.json()
+  console.log(data)
 })
 
 export const userLogin = createAsyncThunk('userlogin', async (body) => {
@@ -28,8 +29,37 @@ export const userLogin = createAsyncThunk('userlogin', async (body) => {
     },
     body: JSON.stringify(body),
   })
-  return await response.json()
+
+  const data = await response.json()
+  if (data.status === 200) {
+    const token = data.body.token
+    localStorage.setItem('token', token)
+    const userData = await getUserData(token)
+    localStorage.setItem('firstName', userData.firstName)
+    localStorage.setItem('lastName', userData.lastName)
+    localStorage.setItem('email', userData.email)
+  } else {
+    console.log('erreur')
+  }
+  return data
 })
+
+async function getUserData(token) {
+  try {
+    const response = await fetch('http://localhost:3001/api/v1/user/profile', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const data = await response.json()
+    const userInfo = data.body
+    return userInfo
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const userSlice = createSlice({
   name: 'user',
@@ -38,11 +68,10 @@ const userSlice = createSlice({
     addToken: (state, action) => {
       state.token = action.payload.token
     },
-    addUser: (state, action) => {
-      state.email = action.payload.email
-    },
     logOut: (state, action) => {
       state.token = null
+      state.firstName = null
+      state.lastName = null
     },
   },
   extraReducers: {
@@ -50,9 +79,13 @@ const userSlice = createSlice({
     [userLogin.pending]: (state, action) => {
       state.loading = true
     },
-    [userLogin.fulfilled]: (state, { payload: { email, token } }) => {
+    [userLogin.fulfilled]: (
+      state,
+      { payload: { firstName, lastName, token } }
+    ) => {
       state.loading = false
-      state.email = email
+      state.firstName = firstName
+      state.lastName = lastName
       state.token = token
     },
     [userLogin.rejected]: (state, action) => {

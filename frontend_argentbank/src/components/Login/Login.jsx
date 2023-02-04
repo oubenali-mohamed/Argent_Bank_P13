@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import './Login.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { userLogin } from '../../features/userSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { token } = useSelector((state) => state.user)
 
   const handleLogin = (e) => {
     e.preventDefault()
-    console.log(email, password)
     dispatch(
       userLogin({
         email,
@@ -23,6 +23,11 @@ function Login() {
     )
     navigate('/profile')
   }
+  useEffect(() => {
+    if (token) {
+      navigate('/profile')
+    }
+  }, [navigate, token])
 
   return (
     <div>

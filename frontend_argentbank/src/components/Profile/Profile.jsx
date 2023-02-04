@@ -1,23 +1,13 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import logo from '../../assets/argentBankLogo.png'
+import { useSelector } from 'react-redux'
+import Header from '../Header/Header'
 
 function User() {
+  const { firstName } = useSelector((state) => state.user)
   return (
     <div>
-      <nav className="nav">
-        <NavLink to="/">
-          <img className="logo" src={logo} alt="Argent Bank Logo" />
-        </NavLink>
-        <div>
-          <i className="fas fa-user-circle"></i>
-          <NavLink className="singIn" to="/">
-            <i className="fa-solid fa-right-from-bracket"></i>
-            Sign Out
-          </NavLink>
-        </div>
-      </nav>
-      <h1>dashbord user</h1>
+      <Header />
+      <h1>welcome back {firstName}</h1>
     </div>
   )
 }

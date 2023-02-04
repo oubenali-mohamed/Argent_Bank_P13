@@ -15,7 +15,6 @@ function SignUp() {
 
   const handleSignup = (e) => {
     e.preventDefault()
-    console.log(firstName, lastName, email, password)
     dispatch(
       userSignup({
         firstName,
