@@ -1,0 +1,38 @@
+.account {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  background-color: #fff;
+  margin: auto;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+.accountContent {
+  color: #13002b;
+  margin-left: 40px;
+  font-family: 'Avenir';
+}
+.accountTitle,
+.accountDescription {
+  font-weight: 400;
+  font-size: 16px;
+  margin: 0px;
+}
+.accountAmount{
+    font-weight: 700;
+    font-size: 40px;
+    margin-bottom: 0px;
+}
+.accountTransaction {
+  margin-right: 40px;
+}
+.button_transaction {
+  height: 40px;
+  width: 200px;
+  border: none;
+  color: #fff;
+  background-color: #00bc77;
+  box-shadow: 2px 2px #000;
+}
