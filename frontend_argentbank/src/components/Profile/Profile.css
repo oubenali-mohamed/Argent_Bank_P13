@@ -3,3 +3,46 @@
   color: #fff;
   padding-bottom: 50px;
 }
+.welcomeBack {
+  padding-top: 20px;
+  margin-bottom: 50px;
+  font-size: 32px;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+.formUpdateUser {
+  margin-left: 30%;
+  width: 500px;
+  padding-top: 40px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.edit_button {
+  cursor: pointer;
+  margin-left: 47%;
+  margin-bottom: 40px;
+  height: 40px;
+  width: 100px;
+  border: none;
+  color: #fff;
+  background-color: #00bc77;
+}
+.updateFirstName_button,
+.updateLastName_button {
+  cursor: pointer;
+  position: relative;
+  top: 60px;
+  left: -95px;
+  bottom: 50px;
+  margin-bottom: 50px;
+  height: 30px;
+  color: #fff;
+  border: none;
+  background-color: #00bc77;
+}
+.updateFirstName_input,
+.updateLastName_input {
+  height: 30px;
+  border: none;
+}

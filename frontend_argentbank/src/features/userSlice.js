@@ -5,7 +5,7 @@ let initialState = {
   password: '',
   token: localStorage.getItem('token'),
   firstName: localStorage.getItem('firstName'),
-  lastName:  localStorage.getItem('lastName'),
+  lastName: localStorage.getItem('lastName'),
   loading: false,
 }
 
@@ -18,7 +18,7 @@ export const userSignup = createAsyncThunk('usersignup', async (body) => {
     body: JSON.stringify(body),
   })
   const data = await response.json()
-  console.log(data)
+  // console.log(data)
 })
 
 export const userLogin = createAsyncThunk('userlogin', async (body) => {
@@ -47,7 +47,7 @@ export const userLogin = createAsyncThunk('userlogin', async (body) => {
 async function getUserData(token) {
   try {
     const response = await fetch('http://localhost:3001/api/v1/user/profile', {
-      method: 'POST',
+      method: 'post',
       headers: {
         'Content-type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -60,6 +60,37 @@ async function getUserData(token) {
     console.log(error)
   }
 }
+
+export const updateUser = createAsyncThunk('updateprofile', async () => {
+  const myBody = {
+    firstName: localStorage.getItem('firstName'),
+    lastName: localStorage.getItem('lastName'),
+  }
+  let response = await fetch('http://localhost:3001/api/v1/user/profile', {
+    method: 'put',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer` + localStorage.getItem('token'),
+    },
+    body: JSON.stringify(myBody),
+  })
+
+  const data = await response.json()
+  return data
+})
+export const newNameUser = createAsyncThunk('updateprofile', async () => {
+  let response = await fetch('http://localhost:3001/api/v1/user/profile', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+      Authorization: `Bearer` + localStorage.getItem('token'),
+    },
+  })
+
+  const data = await response.json()
+  console.log(data)
+  return data
+})
 
 const userSlice = createSlice({
   name: 'user',
