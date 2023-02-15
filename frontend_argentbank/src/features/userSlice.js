@@ -18,7 +18,7 @@ export const userSignup = createAsyncThunk('usersignup', async (body) => {
     body: JSON.stringify(body),
   })
   const data = await response.json()
-  // console.log(data)
+  console.log(data)
 })
 
 export const userLogin = createAsyncThunk('userlogin', async (body) => {
@@ -63,9 +63,10 @@ async function getUserData(token) {
 
 export const updateUser = createAsyncThunk('updateprofile', async () => {
   const myBody = {
-    firstName: localStorage.getItem('firstName'),
-    lastName: localStorage.getItem('lastName'),
+    firstName: document.getElementById('firstname').value,
+    lastName: document.getElementById('lastname').value,
   }
+
   let response = await fetch('http://localhost:3001/api/v1/user/profile', {
     method: 'put',
     headers: {
@@ -74,21 +75,7 @@ export const updateUser = createAsyncThunk('updateprofile', async () => {
     },
     body: JSON.stringify(myBody),
   })
-
   const data = await response.json()
-  return data
-})
-export const newNameUser = createAsyncThunk('updateprofile', async () => {
-  let response = await fetch('http://localhost:3001/api/v1/user/profile', {
-    method: 'post',
-    headers: {
-      'Content-type': 'application/json',
-      Authorization: `Bearer` + localStorage.getItem('token'),
-    },
-  })
-
-  const data = await response.json()
-  console.log(data)
   return data
 })
 
@@ -103,6 +90,7 @@ const userSlice = createSlice({
       state.token = null
       state.firstName = null
       state.lastName = null
+      localStorage.clear()
     },
   },
   extraReducers: {

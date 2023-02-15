@@ -5,7 +5,7 @@ import Header from '../Header/Header'
 import Account from '../Account/Account'
 import { useSelector, useDispatch } from 'react-redux'
 import Footer from '../Footer/Footer'
-import { newNameUser, updateUser } from '../../features/userSlice'
+import { updateUser } from '../../features/userSlice'
 
 function User() {
   const { firstName, lastName } = useSelector((state) => state.user)
@@ -21,10 +21,12 @@ function User() {
     e.preventDefault()
     dispatch(updateUser(data)).then(() => {
       setEditInputsDisplayed(false)
-      dispatch(newNameUser())
     })
   }
-
+  useEffect(() => {
+    setUserNameFirst(firstName)
+    setUserNameLast(lastName)
+  }, [firstName, lastName])
   return (
     <div>
       <div>
